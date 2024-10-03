@@ -58,8 +58,11 @@ public class DragAndDropCube : MonoBehaviour
                 if (maps.map[snappedX, snappedY] == null)
                 {
                     transform.position = new Vector3(snappedX, snappedY, currentPosition.z);
+                    transform.parent = maps.transform.gameObject.transform;
                     gameObject.GetComponent<CubeInteract>().isMove = false;
                     maps.map[snappedX, snappedY] = this.gameObject;
+
+                    maps.SpawnNewCube();
                 }
             }
         }

@@ -11,12 +11,14 @@ public class Map : MonoBehaviour
     [SerializeField] private GameObject backgroundMap;
     [SerializeField] private int countSpawnPos=2;
     [SerializeField] private int countCube=2;
+    [SerializeField] private List<GameObject> posListSpawn;
 
     void Start()
     {
         map = new GameObject[width, height];
 
         InitMap();
+    
     }
     private void InitMap()
     {
@@ -52,11 +54,27 @@ public class Map : MonoBehaviour
             objectTmp.transform.position = new Vector3(toWorld.x + i - 0.5f+(i*0.2f), -2, 0);
             objectTmp.transform.parent = this.transform;
 
-            int indexCubes = Random.Range(0, arrCubes.Length);
-            GameObject cubeSpawnobj = Instantiate(arrCubes[indexCubes], this.transform);
-            cubeSpawnobj.transform.position = objectTmp.transform.position;
-            cubeSpawnobj.transform.SetParent(objectTmp.transform);
+        
+            posListSpawn.Add(objectTmp);
+
         }
+        SpawnNewCube();
+    }
+    public void SpawnNewCube()
+    {
+        for(int i=0;i<posListSpawn.Count;i++)
+        {
+            if (posListSpawn[i].transform.childCount == 0)
+            {
+                int indexCubes = Random.Range(0, arrCubes.Length);
+                GameObject cubeSpawnobj = Instantiate(arrCubes[indexCubes], this.transform);
+                cubeSpawnobj.GetComponent<CubeInteract>().isMove = true;
+                cubeSpawnobj.transform.position = posListSpawn[i].transform.position;
+                cubeSpawnobj.transform.SetParent(posListSpawn[i].transform);
+            }
+           
+        }
+       
     }
     private void CreateCubes()
     {
