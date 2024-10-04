@@ -60,6 +60,10 @@ public class DragAndDropCube : MonoBehaviour
                     transform.position = new Vector3(snappedX, snappedY, currentPosition.z);
                     transform.parent = maps.transform.gameObject.transform;
                     gameObject.GetComponent<CubeInteract>().isMove = false;
+                    for(int i = 0; i < gameObject.transform.childCount;i++)
+                    {
+                        gameObject.transform.GetChild(i).GetComponent<CubeInteract>().isMove = false;
+                    }
                     maps.map[snappedX, snappedY] = this.gameObject;
 
                     maps.SpawnNewCube();

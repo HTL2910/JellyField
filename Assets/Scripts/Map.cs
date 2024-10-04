@@ -85,6 +85,10 @@ public class Map : MonoBehaviour
             GameObject tmpObject = Instantiate(arrCubes[indexCubes],this.transform);
             tmpObject.name = arrCubes[indexCubes].name + " index: "+ i.ToString();
             tmpObject.GetComponent<CubeInteract>().isMove = false;
+            for (int j = 0; j < tmpObject.transform.childCount; j++)
+            {
+                tmpObject.transform.GetChild(j).GetComponent<CubeInteract>().isMove = false;
+            }
             int attempts = 0;
             int posX, posY;
             do
