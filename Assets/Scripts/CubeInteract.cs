@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class CubeInteract : MonoBehaviour
 {
     public bool isMove ;
+
     private List<GameObject> list = new List<GameObject>();
+
+   
     private void OnTriggerStay(Collider other)
     {
 
@@ -87,15 +91,30 @@ public class CubeInteract : MonoBehaviour
                 StartCoroutine(Destroytrigger(other.gameObject, this.gameObject));
 
             }
+            
+
 
 
         }
     }
+    private void OnDestroy()
+    {
+        for (int i = 0; i < Goal.Instance.arrayGoals.Length; i++)
+        {
+            if (Goal.Instance.arrayGoals[i].matchTag == this.gameObject.tag)
+            {
+                Goal.Instance.arrayGoals[i].numberCollected -= 1;
+            }
+        }
+        Goal.Instance.coin++;
+        Goal.Instance.UpdateText();
+    }
     IEnumerator Destroytrigger(GameObject obj1, GameObject obj2)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         Destroy(obj1);
         Destroy(obj2);
+       
     }
     private Vector3 GetCenterPosition(GameObject obj1, GameObject obj2)
     {

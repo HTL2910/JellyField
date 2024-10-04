@@ -201,6 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 604650326}
   - component: {fileID: 604650325}
+  - component: {fileID: 604650327}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -247,6 +248,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &604650327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604650324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7483176b35d27c544877d537e6836679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrayGoals: []
+  itemPrefabs: {fileID: 0}
+  goalTransform: {fileID: 0}
+  winPanel: {fileID: 0}
+  coinText: {fileID: 0}
+  levelText: {fileID: 0}
+  coin: 0
+  level: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
