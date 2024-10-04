@@ -36,6 +36,9 @@ public class Goal : MonoBehaviour
     {
         winPanel.SetActive(false);
         CreateTarget();
+        level= PlayerPrefs.GetInt("level", 0);
+        levelText.text = "Level " + (level+1).ToString() + ":";
+        coin= PlayerPrefs.GetInt("coin", 0);
         coinText.text=coin.ToString();
     }
 
@@ -82,7 +85,11 @@ public class Goal : MonoBehaviour
     public void Get()
     {
         coinText.text = coin.ToString();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        PlayerPrefs.SetInt("level", level+1);
+        PlayerPrefs.SetInt("coin", coin);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
    
 }

@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61258086e223284ebb1fcb92e2e0d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 5
+  height: 3
   width: 5
   arrCubes:
   - {fileID: 6558298654578123848, guid: 5ce82d1fb4866fd43bf78d6a5c860ed4, type: 3}
@@ -1021,6 +1021,7 @@ MonoBehaviour:
   countSpawnPos: 2
   countCube: 5
   posListSpawn: []
+  menu: {fileID: 11400000, guid: 532a49b1182ee0142accd2bf3e81fd2d, type: 2}
 --- !u!4 &604650326
 Transform:
   m_ObjectHideFlags: 0

@@ -12,7 +12,22 @@ public class Map : MonoBehaviour
     [SerializeField] private int countSpawnPos=2;
     [SerializeField] private int countCube=2;
     [SerializeField] private List<GameObject> posListSpawn;
+    public MenuLevel menu;
+    int indexlevel = 0;
+    int level = 1;
+    private LevelController levelControler;
+    private void Awake()
+    {
+        indexlevel = PlayerPrefs.GetInt("level", 0);
+        level = indexlevel + 1;
+        if(menu != null)
+        {
+            levelControler = menu.levelMenu[indexlevel];
+            height=levelControler.height;
+            width=levelControler.width;
 
+        }
+    }
     void Start()
     {
         map = new GameObject[width, height];
