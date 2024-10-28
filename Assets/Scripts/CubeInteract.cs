@@ -9,7 +9,7 @@ public class CubeInteract : MonoBehaviour
     public bool isMove ;
 
     private List<GameObject> list = new List<GameObject>();
-
+   
    
     private void OnTriggerStay(Collider other)
     {
@@ -41,12 +41,14 @@ public class CubeInteract : MonoBehaviour
                             {
                                 Vector3 newScale = tmpObj.transform.localScale;
                                 newScale.x *= 2; // Tăng kích thước x gấp đôi
+                                tmpObj.GetComponent<SphereCollider>().radius *= 2f;
                                 tmpObj.transform.localScale = newScale;
                             }
                             else if (tmpObj.transform.localScale.y <0.9f)
                             {
                                 Vector3 newScale = tmpObj.transform.localScale;
                                 newScale.y *= 2; // Tăng kích thước y gấp đôi
+                                tmpObj.GetComponent<SphereCollider>().radius *= 2f;
                                 tmpObj.transform.localScale = newScale;
                             }
                         }
@@ -75,12 +77,14 @@ public class CubeInteract : MonoBehaviour
                         {
                             Vector3 newScale = tmpObj.transform.localScale;
                             newScale.x *= 2; // Tăng kích thước x gấp đôi
+                            tmpObj.GetComponent<SphereCollider>().radius *= 2f;
                             tmpObj.transform.localScale = newScale;
                         }
                         else if (tmpObj.transform.localScale.y < 0.9f)
                         {
                             Vector3 newScale = tmpObj.transform.localScale;
                             newScale.y *= 2; // Tăng kích thước y gấp đôi
+                            tmpObj.GetComponent<SphereCollider>().radius *= 2f;
                             tmpObj.transform.localScale = newScale;
                         }
                     }
@@ -99,6 +103,15 @@ public class CubeInteract : MonoBehaviour
     }
     private void OnDestroy()
     {
+       
+
+
+    }
+    IEnumerator Destroytrigger(GameObject obj1, GameObject obj2)
+    {
+        yield return new WaitForSeconds(0.3f);
+        Destroy(obj1);
+        Destroy(obj2);
         for (int i = 0; i < Goal.Instance.arrayGoals.Length; i++)
         {
             if (Goal.Instance.arrayGoals[i].matchTag == this.gameObject.tag)
@@ -106,15 +119,9 @@ public class CubeInteract : MonoBehaviour
                 Goal.Instance.arrayGoals[i].numberCollected -= 1;
             }
         }
-        Goal.Instance.coin++;
+
+        Goal.Instance.coin += 1;
         Goal.Instance.UpdateText();
-    }
-    IEnumerator Destroytrigger(GameObject obj1, GameObject obj2)
-    {
-        yield return new WaitForSeconds(0.3f);
-        Destroy(obj1);
-        Destroy(obj2);
-       
     }
     private Vector3 GetCenterPosition(GameObject obj1, GameObject obj2)
     {
@@ -122,6 +129,7 @@ public class CubeInteract : MonoBehaviour
         Vector3 position2 = obj2.transform.position;
 
         Vector3 centerPosition = (position1 + position2) / 2.0f;
+       
 
         return centerPosition;
     }
